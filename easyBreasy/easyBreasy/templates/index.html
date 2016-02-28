@@ -1,0 +1,85 @@
+{% load staticfiles %}
+
+<html>
+    <head>
+        <title>Title</title>
+
+        <script src="{% static 'jquery/dist/jquery.js' %}" ></script>
+
+        <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.css'%}" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="{% static 'lightbox2/dist/css/lightbox.css'%}" media="screen" title="no title" charset="utf-8">
+
+    </head>
+    <body>
+    {% block header %}
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Test</a>
+            </div>
+            <center>
+                <div class="navbar-collapse collapse" id="navbar-main">
+                    <ul class="nav navbar-nav">
+                        <li ><a href="/">Main page</a>
+
+
+                    </ul>
+                    {% if request.user.is_authenticated and not request.user.is_anonymouse %}
+                    <form method="post" class="navbar-form navbar-right" role="search" action="/logout/">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="">Hi, {{ request.user.username}}</label>
+                            <!-- <input type="text" class="form-control" name="username" placeholder="Username"> -->
+                        </div>
+
+                    <button type="submit" class="btn btn-default">Log out</button>
+                </form>
+
+                    {% else %}
+                    <form method="post" class="navbar-form navbar-right" role="search" action="/login/">
+                        {% csrf_token%}
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="username" placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="password" placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn btn-default">Sign In</button>
+                    </form>
+                    {% endif %}
+                </div>
+            </center>
+        </div>
+    </div>
+
+    {% endblock %}
+<div class="row">
+    <div class="col-sm-3 col-md-3"></div>
+    <div class="col-sm-5 col-md-5" style="margin-top:50px;">
+
+    {% if request.user.is_authenticated and not request.user.is_anonymouse %}
+
+        {% block content %}
+        {% endblock %}
+
+    {% else %}
+        <h2>Інформація доступна лише зареєстрованим користувачам</h2>
+    {% endif %}
+    </div>
+    <div class="col-sm-4 col-md-4"></div>
+
+</div>
+    {% block footer %}
+    {% endblock %}
+
+
+
+    <script src="{% static 'lightbox2/dist/js/lightbox.js' %}" ></script>
+
+    </body>
+</html>

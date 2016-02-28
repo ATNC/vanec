@@ -1,0 +1,30 @@
+{% extends 'index.html' %}
+
+
+{% block content %}
+<div class="media" style="margin-top: 10px;">
+  <div class="media-left media-middle">
+    <a href="#">
+      <img class="media-object" src="{{ client.client_image.url }}" width="128px" alt="Generic placeholder image">
+    </a>
+  </div>
+  <div class="media-body">
+    <h4 class="media-heading">{{client.get_full_name}}</h4>
+    <p>
+        {{ client.client_description }}
+
+    </p>
+  </div>
+</div>
+<hr>
+<h2>Документи</h2>
+<ul>
+    {% for image in client.docs.all %}
+        <a href="{{ image.documents_file.url }}" data-lightbox="roadtrip">
+            <img width="128px" src="{{ image.documents_file.url }}" alt="" class="img-thumbnail">
+        </a>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}

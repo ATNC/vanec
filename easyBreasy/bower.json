@@ -1,0 +1,16 @@
+{
+  "name": "travolta",
+  "authors": [
+    "Ivan <i.khamlenko@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "devDependencies": {
+    "jquery": "^2.2.1",
+    "bootstrap": "^3.3.6",
+    "lightbox2": "^2.8.2"
+  }
+}
