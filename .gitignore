@@ -18,6 +18,7 @@ tests/report/
 
 *.sqlite3
 env/
-
+media/
+static/
 settings_local.py
 bower_conponents/
